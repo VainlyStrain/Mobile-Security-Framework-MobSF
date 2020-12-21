@@ -31,6 +31,7 @@ from StaticAnalyzer.models import (
 from StaticAnalyzer.views.android.binary_analysis import elf_analysis
 from StaticAnalyzer.views.android.cert_analysis import (
     cert_info, get_hardcoded_cert_keystore)
+from StaticAnalyzer.views.android.library_analysis import library_analysis
 from StaticAnalyzer.views.android.code_analysis import code_analysis
 from StaticAnalyzer.views.android.converter import (apk_2_java, dex_2_smali)
 from StaticAnalyzer.views.android.db_interaction import (
@@ -192,6 +193,12 @@ def static_analyzer(request, api=False):
 
                     dex_2_smali(app_dic['app_dir'], app_dic['tools_dir'])
 
+                    lib_an_dic = library_analysis(
+                        app_dic['app_dir'],
+                        'apk',
+                        app_dic['manifest_file']
+                    )
+
                     code_an_dic = code_analysis(
                         app_dic['app_dir'],
                         'apk',
@@ -234,6 +241,7 @@ def static_analyzer(request, api=False):
                                 app_dic,
                                 man_data_dic,
                                 man_an_dic,
+                                lib_an_dic,
                                 code_an_dic,
                                 cert_dic,
                                 elf_dict['elf_analysis'],
@@ -248,6 +256,7 @@ def static_analyzer(request, api=False):
                                 app_dic,
                                 man_data_dic,
                                 man_an_dic,
+                                lib_an_dic,
                                 code_an_dic,
                                 cert_dic,
                                 elf_dict['elf_analysis'],
@@ -260,6 +269,7 @@ def static_analyzer(request, api=False):
                         app_dic,
                         man_data_dic,
                         man_an_dic,
+                        lib_an_dic,
                         code_an_dic,
                         cert_dic,
                         elf_dict['elf_analysis'],
@@ -423,6 +433,7 @@ def static_analyzer(request, api=False):
                                     app_dic,
                                     man_data_dic,
                                     man_an_dic,
+                                    {},
                                     code_an_dic,
                                     cert_dic,
                                     [],
@@ -437,6 +448,7 @@ def static_analyzer(request, api=False):
                                     app_dic,
                                     man_data_dic,
                                     man_an_dic,
+                                    {},
                                     code_an_dic,
                                     cert_dic,
                                     [],
@@ -449,6 +461,7 @@ def static_analyzer(request, api=False):
                             app_dic,
                             man_data_dic,
                             man_an_dic,
+                            {},
                             code_an_dic,
                             cert_dic,
                             [],

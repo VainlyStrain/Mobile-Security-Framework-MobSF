@@ -45,6 +45,8 @@ class StaticAnalyzerAndroid(models.Model):
     BINARY_ANALYSIS = models.TextField(default=[])
     FILE_ANALYSIS = models.TextField(default=[])
     ANDROID_API = models.TextField(default={})
+    LIBSCOUT_ANALYSIS = models.TextField(default={})
+    LIBID_ANALYSIS = models.TextField(default={})
     CODE_ANALYSIS = models.TextField(default={})
     NIAP_ANALYSIS = models.TextField(default={})
     URLS = models.TextField(default=[])
