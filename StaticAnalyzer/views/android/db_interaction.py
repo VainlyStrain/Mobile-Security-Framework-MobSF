@@ -54,7 +54,7 @@ def get_context_from_db_entry(db_entry: QuerySet) -> dict:
             'binary_analysis': python_list(db_entry[0].BINARY_ANALYSIS),
             'file_analysis': python_list(db_entry[0].FILE_ANALYSIS),
             'android_api': python_dict(db_entry[0].ANDROID_API),
-            'libscout_analysis': python_dict(db_entry[0].LIBSCOUT_ANALYSIS),
+            'libscout_analysis': python_list(db_entry[0].LIBSCOUT_ANALYSIS),
             'libid_analysis': python_dict(db_entry[0].LIBID_ANALYSIS),
             'code_analysis': python_dict(db_entry[0].CODE_ANALYSIS),
             'niap_analysis': python_dict(db_entry[0].NIAP_ANALYSIS),
