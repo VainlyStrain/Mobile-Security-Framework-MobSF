@@ -59,7 +59,8 @@ TOOLS_DIR = os.path.join(BASE_DIR, 'DynamicAnalyzer/tools/')
 # LibScout Directory
 LIBSCOUT_DIR = os.path.join(BASE_DIR, 'StaticAnalyzer/tools/LibScout/')
 # LibScout Profiles Directory
-LIBSCOUT_PROFILES_DIR = os.path.join(BASE_DIR, 'StaticAnalyzer/tools/LibScout-Profiles/')
+rel_path = 'StaticAnalyzer/tools/LibScout-Profiles/'
+LIBSCOUT_PROFILES_DIR = os.path.join(BASE_DIR, rel_path)
 # Android SDK Location (path to android.jar)
 SDK_PATH = ''
 # Secret File

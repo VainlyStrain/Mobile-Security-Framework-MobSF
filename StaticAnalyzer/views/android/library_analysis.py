@@ -7,7 +7,7 @@ import subprocess
 from MobSF.settings import (
     LIBSCOUT_DIR,
     LIBSCOUT_PROFILES_DIR,
-    SDK_PATH
+    SDK_PATH,
 )
 
 
@@ -32,7 +32,7 @@ def library_analysis(app_path):
             if SDK_PATH == '' or 'android.jar' not in SDK_PATH.lower():
                 error = ('SDK Path not set or invalid. Make sure '
                          'SDK_PATH in "settings.py" points to android.jar.')
-                
+
                 raise ValueError(error)
 
             command = [
@@ -46,7 +46,7 @@ def library_analysis(app_path):
                 capture_output=True,
                 cwd=LIBSCOUT_DIR,
                 check=True,
-                encoding='utf-8'
+                encoding='utf-8',
             )
 
             ls_output = process.stdout
