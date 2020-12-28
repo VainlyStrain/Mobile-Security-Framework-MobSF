@@ -119,5 +119,5 @@ echo '[INSTALL] Building LibScout'
 cd StaticAnalyzer/tools/LibScout/
 ./gradlew build
 cd ../../../
-echo '[INSTALL] Installation Complete'
+echo '[INSTALL] Installation Complete. Make sure to set SDK_PATH in MobSF/settings.py if you want to use LibScout.'
 python scripts/check_install.py
