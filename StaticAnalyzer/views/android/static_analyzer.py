@@ -194,9 +194,7 @@ def static_analyzer(request, api=False):
                     dex_2_smali(app_dic['app_dir'], app_dic['tools_dir'])
 
                     lib_an_dic = library_analysis(
-                        app_dic['app_dir'],
-                        'apk',
-                        app_dic['manifest_file']
+                        app_dic['app_path']
                     )
 
                     code_an_dic = code_analysis(

@@ -56,6 +56,12 @@ DB_DIR = os.path.join(MobSF_HOME, 'db.sqlite3')
 SIGNATURE_DIR = os.path.join(MobSF_HOME, 'signatures/')
 # Tools Directory
 TOOLS_DIR = os.path.join(BASE_DIR, 'DynamicAnalyzer/tools/')
+# LibScout Directory
+LIBSCOUT_DIR = os.path.join(BASE_DIR, 'StaticAnalyzer/tools/LibScout/')
+# LibScout Profiles Directory
+LIBSCOUT_PROFILES_DIR = os.path.join(BASE_DIR, 'StaticAnalyzer/tools/LibScout-Profiles/')
+# Android SDK Location (path to android.jar)
+SDK_PATH = ''
 # Secret File
 SECRET_FILE = os.path.join(MobSF_HOME, 'secret')
 

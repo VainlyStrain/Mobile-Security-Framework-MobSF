@@ -9,6 +9,8 @@ from django.conf import settings
 
 from MobSF.utils import filename_from_path
 
+from settings import LIBSCOUT_DIR, LIBSCOUT_PROFILES_DIR, SDK_PATH
+
 from StaticAnalyzer.views.shared_func import (
     url_n_email_extract,
 )
@@ -20,7 +22,7 @@ from StaticAnalyzer.views.sast_engine import (
 logger = logging.getLogger(__name__)
 
 
-def library_analysis(app_dir, typ, manifest_file):
+def library_analysis(app_path):
     """
     Perform vulnerability analysis on the
     app's libraries.
@@ -41,9 +43,19 @@ def library_analysis(app_dir, typ, manifest_file):
         try:
             lsOutput = ""  # libScout output will be in here
 
-            # temporary solution. TODO: call to subprocess
-            with open("/home/vainlystrain/Downloads/output_mengloft.txt", "r") as inpfile:
-                lsOutput = inpfile.read()
+            if SDK_PATH == "" or "android.jar" not in SDK_PATH.lower():
+                raise Exception("
+                    SDK Path not set or invalid. Make sure SDK_PATH in 'settings.py' points to android.jar.
+                ")
+
+            command = [
+                "java", "-jar", "LibScout.jar",
+                "-a", SDK_PATH, "-p", LIBSCOUT_PROFILES_DIR,
+                "-o", "match", app_path
+            ]
+
+            process = subprocess.run(command, capture_output=True, cwd=LIBSCOUT_DIR, check=True, encoding="utf-8")
+            lsOutput = process.stdout
             lsParsed = parseScout(lsOutput)
         except Exception:
             logger.exception('Running LibScout Analysis')
@@ -104,6 +116,7 @@ def parseScoutSubroutine(libList):
         vulnerable = True if "[SECURITY]" in comment else False
         if "score:" in library:
             accuracy = library.split("score:")[1].split("\n")[0].strip()
+        vuln = comment if vulnerable else ""
         profile = {
             "name": name,
             "category": category,
@@ -112,7 +125,7 @@ def parseScoutSubroutine(libList):
             "rootPkg": rootPkg,
             "deprecated": old,
             "vulnerable": vulnerable,
-            "vulnerabilities": "",  # TODO: implement me
+            "vulnerabilities": [vuln],
             "certainty": accuracy
         }
         profiles.append(profile)

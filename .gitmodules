@@ -1,3 +1,9 @@
 [submodule "StaticAnalyzer/test_files"]
 	path = StaticAnalyzer/test_files
 	url = https://github.com/MobSF/test_files.git
+[submodule "StaticAnalyzer/tools/LibScout"]
+	path = StaticAnalyzer/tools/LibScout
+	url = https://github.com/reddr/LibScout
+[submodule "StaticAnalyzer/tools/LibScout-Profiles"]
+	path = StaticAnalyzer/tools/LibScout-Profiles
+	url = https://github.com/reddr/LibScout-Profiles

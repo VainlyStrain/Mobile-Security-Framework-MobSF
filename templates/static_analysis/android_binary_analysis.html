@@ -1013,11 +1013,12 @@
                   </td>
                   <td>
                       <strong>Vulnerabilities:</strong>
+                      {% if profile.vulnerable == True %}
                       {% for vuln in profile.vulnerabilities %}
                       {{ vuln }}
                       <br/>
                       {% endfor %}
-                      {% if profile.vulnerable == False %}
+                      {% else %}
                       No vulnerabilities reported against this version.
                       {% endif %}
                   </td>
