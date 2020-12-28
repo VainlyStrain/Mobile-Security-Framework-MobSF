@@ -113,5 +113,11 @@ wkhtmltopdf -V
 if ! [ $? -eq 0 ]; then
     echo 'Download and Install wkhtmltopdf for PDF Report Generation - https://wkhtmltopdf.org/downloads.html'
 fi
+echo '[INSTALL] Initializing Submodules'
+git submodule update --init
+echo '[INSTALL] Building LibScout'
+cd StaticAnalyzer/tools/LibScout/
+./gradlew build
+cd ../../../
 echo '[INSTALL] Installation Complete'
 python scripts/check_install.py
