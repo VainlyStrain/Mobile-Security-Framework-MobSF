@@ -9,7 +9,7 @@ from django.conf import settings
 
 from MobSF.utils import filename_from_path
 
-from settings import LIBSCOUT_DIR, LIBSCOUT_PROFILES_DIR, SDK_PATH
+from MobSF.settings import LIBSCOUT_DIR, LIBSCOUT_PROFILES_DIR, SDK_PATH
 
 from StaticAnalyzer.views.shared_func import (
     url_n_email_extract,
@@ -29,27 +29,18 @@ def library_analysis(app_path):
     """
     try:
         logger.info('Library Analysis Started')
-        """
-        libToolsRoot = ""  # TODO: fill me out
-        libScoutPath = libToolsRoot / "LibScout"
-        libScoutProfilesPath = libToolsRoot / ""  # TODO: fill me out
-        libIDPath = libToolsRoot / ""  # TODO: fill me out
-        """
 
         # start LibScout
         logger.info('Launching LibScout')
 
-        # TODO
         try:
             lsOutput = ""  # libScout output will be in here
 
             if SDK_PATH == "" or "android.jar" not in SDK_PATH.lower():
-                raise Exception("
-                    SDK Path not set or invalid. Make sure SDK_PATH in 'settings.py' points to android.jar.
-                ")
+                raise ValueError("SDK Path not set or invalid. Make sure SDK_PATH in 'settings.py' points to android.jar.")
 
             command = [
-                "java", "-jar", "LibScout.jar",
+                "java", "-jar", "build/libs/LibScout.jar",
                 "-a", SDK_PATH, "-p", LIBSCOUT_PROFILES_DIR,
                 "-o", "match", app_path
             ]
