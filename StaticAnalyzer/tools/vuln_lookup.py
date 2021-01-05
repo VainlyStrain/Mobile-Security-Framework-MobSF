@@ -99,8 +99,8 @@ def contains_version(version_range, version):
     try:
         lib_version = parse(version)
         intro = version_range[0]
-        if intro == "NA":
-            intro = "0"
+        if intro == 'NA':
+            intro = '0'
         start = parse(intro)
         fix = parse(version_range[1])
         check = lib_version >= start and lib_version < fix
