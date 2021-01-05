@@ -10,6 +10,10 @@ from MobSF.settings import (
     SDK_PATH,
 )
 
+from StaticAnalyzer.tools.vuln_lookup import (
+    is_vulnerable,
+)
+
 
 logger = logging.getLogger(__name__)
 
@@ -112,10 +116,13 @@ def parse_scout_subroutine(libs):
         comment = ''
         if 'comment:' in library:
             comment = library.split('comment:')[1].split('\n')[0].strip()
-        vulnerable = True if '[SECURITY]' in comment else False
         if 'score:' in library:
             accuracy = library.split('score:')[1].split('\n')[0].strip()
-        vuln = comment if vulnerable else ''
+        vulnerable, vuln = is_vulnerable(name, version)
+        if not vulnerable:
+            vulnerable = True if '[SECURITY]' in comment else False
+            vuln = [comment] if vulnerable else ['']
+
         profile = {
             'name': name,
             'category': category,
@@ -124,7 +131,7 @@ def parse_scout_subroutine(libs):
             'rootPkg': root,
             'deprecated': old,
             'vulnerable': vulnerable,
-            'vulnerabilities': [vuln],
+            'vulnerabilities': vuln,
             'certainty': accuracy,
         }
         profiles.append(profile)

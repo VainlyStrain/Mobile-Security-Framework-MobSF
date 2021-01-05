@@ -1017,8 +1017,8 @@
                       <strong>Vulnerabilities:</strong>
                       {% if profile.vulnerable == True %}
                       {% for vuln in profile.vulnerabilities %}
-                      {{ vuln }}
                       <br/>
+                      {{ vuln }}
                       {% endfor %}
                       {% else %}
                       No vulnerabilities reported against this version.
