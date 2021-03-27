@@ -64,7 +64,7 @@ if [[ $unamestr == 'Darwin' ]]; then
         echo "[INSTALL] Found headers under CommandLineTools"
         export "CPATH=/Library/Developer/CommandLineTools/SDKs/MacOSX${current_macos_version}.sdk/usr/include"
     else
-        echo '[ERROR] setup cannot find macOS SDK header location. Please install appropriate headers.'   
+        echo '[ERROR] setup cannot find macOS SDK header location. Please install appropriate headers.'
         exit 1
     fi
 fi
@@ -115,6 +115,11 @@ if ! [ $? -eq 0 ]; then
 fi
 echo '[INSTALL] Initializing Submodules'
 git submodule update --init
+echo '[INSTALL] Initializing LibID'
+cd StaticAnalyzer/tools/LibID/
+./example/init.sh
+./LibID.py profile -d example
+cd ../../../
 echo '[INSTALL] Building LibScout'
 cd StaticAnalyzer/tools/LibScout/
 ./gradlew build

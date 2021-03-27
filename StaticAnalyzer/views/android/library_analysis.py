@@ -3,11 +3,13 @@
 
 import logging
 import subprocess
+import json
 
 from MobSF.settings import (
     LIBSCOUT_DIR,
     LIBSCOUT_PROFILES_DIR,
     SDK_PATH,
+    LIBID_DIR,
 )
 
 from StaticAnalyzer.tools.vuln_lookup import (
@@ -60,11 +62,32 @@ def library_analysis(app_path):
             ls_parsed = []
 
         logger.info('Launching LibID')
-
-        # TODO
         try:
-            lid_output = 'I am a placeholder for LibID.'
-            lid_parsed = parse_id(lid_output)
+            # create or get profile path
+            app_name = app_path.split("/")[-1].split(".")[0] + ".json" # path to generated json files from commands
+            command = ['python2', "LibID.py", "profile", "-f", app_path]
+            logger.info('Starting LibID app profiling')
+            process = subprocess.run(
+                command,
+                cwd=LIBID_DIR,
+                check=True,
+                encoding='utf-8',
+            )
+            # profile the app with lib
+            logger.info('Starting LibID lib detection')
+            command = ['python2', "LibID.py", "detect", "-af", LIBID_DIR + "profiles/app/" + app_name, "-ld", LIBID_DIR + "profiles/lib"]
+            process = subprocess.run(
+                command,
+                cwd=LIBID_DIR,
+                check=True,
+                encoding='utf-8',
+            )
+            # load from outputs/
+            fp = open(LIBID_DIR + "outputs/" + app_name, )
+            data = json.load(fp)
+            fp.close()
+
+            lid_parsed = parse_id(data)
         except Exception:
             logger.exception('Running LibID Analysis')
             lid_parsed = ''
@@ -140,4 +163,16 @@ def parse_scout_subroutine(libs):
 
 def parse_id(results):
     """Parse the output of LibID."""
-    return {}  # TODO: implement me
+    libs = []
+    for lib in results['libraries']:
+        for version in lib['version']:
+            sample = {
+                'name': lib['name'],
+                'version': version,
+                'similarity': lib['similarity'],
+                'shrink_percentage': int(lib['shrink_percentage'])*100,
+                'root_package_exist': lib['root_package_exist'],
+                'matched_root_package': lib['matched_root_package'],
+            }
+            libs.append(sample)
+    return libs

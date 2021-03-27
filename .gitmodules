@@ -7,3 +7,6 @@
 [submodule "StaticAnalyzer/tools/LibScout-Profiles"]
 	path = StaticAnalyzer/tools/LibScout-Profiles
 	url = https://github.com/reddr/LibScout-Profiles
+[submodule "StaticAnalyzer/tools/LibID"]
+	path = StaticAnalyzer/tools/LibID
+	url = https://github.com/ucam-cl-dtg/LibID.git

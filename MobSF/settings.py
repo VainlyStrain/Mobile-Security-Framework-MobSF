@@ -24,10 +24,10 @@ logger = logging.getLogger(__name__)
 MOBSF_VER = 'v3.2.4 Beta'
 
 BANNER = """
-  __  __       _    ____  _____   _____  ____  
- |  \/  | ___ | |__/ ___||  ___| |___ / |___ \ 
+  __  __       _    ____  _____   _____  ____
+ |  \/  | ___ | |__/ ___||  ___| |___ / |___ \
  | |\/| |/ _ \| '_ \___ \| |_      |_ \   __) |
- | |  | | (_) | |_) |__) |  _|    ___) | / __/ 
+ | |  | | (_) | |_) |__) |  _|    ___) | / __/
  |_|  |_|\___/|_.__/____/|_|     |____(_)_____|
 """  # noqa: W291
 # ASCII Font: Standard
@@ -63,6 +63,8 @@ rel_path = 'StaticAnalyzer/tools/LibScout-Profiles/'
 LIBSCOUT_PROFILES_DIR = os.path.join(BASE_DIR, rel_path)
 # Android SDK Location (path to android.jar)
 SDK_PATH = ''
+# LibID Directory
+LIBID_DIR = os.path.join(BASE_DIR, 'StaticAnalyzer/tools/LibID/')
 # Secret File
 SECRET_FILE = os.path.join(MobSF_HOME, 'secret')
 
