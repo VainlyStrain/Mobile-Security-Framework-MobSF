@@ -10,54 +10,54 @@ from packaging.version import parse
 Inner lists: [<INTRODUCED>, <FIXED>]
 """
 vuln_db = {
-    'Airpush': {
+    'airpush': {
         'AIRPUSH_01': [
             ['NA', '8.1'],
         ],
     },
-    'Apache CC': {
+    'apache cc': {
         'CVE-2015-6420': [
             ['3.2.1', '3.2.2'],
             ['4.0', '4.1'],
         ],
     },
-    'Dropbox': {
+    'dropbox': {
         'CVE-2014-8889': [
             ['1.5.4', '1.6.2'],
         ],
     },
-    'Facebook': {
+    'facebook': {
         'FB_01': [
             ['3.15', '3.16'],
         ],
     },
-    'MoPub': {
+    'mopub': {
         'MOPUB_01': [
             ['NA', '4.4.0'],
         ],
     },
-    'OkHttp': {
+    'okhttp': {
         'CVE-2016-2402': [
             ['2.1', '2.7.5'],
             ['3.0.0', '3.2.0'],
         ],
     },
-    'Plexus Archiver': {
+    'plexus archiver': {
         'PLA_01': [
             ['NA', '3.6.0'],
         ],
     },
-    'SuperSonic': {
+    'supersonic': {
         'SUSO_01': [
             ['NA', '6.3.5'],
         ],
     },
-    'Vungle': {
+    'vungle': {
         'VUNGLE_01': [
             ['NA', '3.3.0'],
         ],
     },
-    'ZeroTurnaround': {
+    'zeroturnaround': {
         'ZT_01': [
             ['NA', '1.13'],
         ],
@@ -113,6 +113,7 @@ def is_vulnerable(name, version):
     """Checks if library version has known vulnerability."""
     vulnerable = False
     vulnerabilities = []
+    name = name.lower()
     if name not in vuln_db:
         return (vulnerable, [''])
     for candidate, version_ranges in vuln_db[name].items():
