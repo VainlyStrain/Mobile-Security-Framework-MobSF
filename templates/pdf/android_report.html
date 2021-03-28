@@ -527,6 +527,8 @@
                 <th>SIMILARITY</th>
                 <th>SHRINK PERCENTAGE</th>
                 <th>MATCHED ROOT PACKAGE</th>
+                <th>STATUS</th>
+                <th>PROBLEMS</th>
               </tr>
             </thead>
             <tbody>
@@ -557,6 +559,24 @@
                 {% else %}
                 No root package exists.
                 {% endif %}
+              </td>
+              <td>
+                {% if profile.vulnerable == True %}
+                  <span class="badge bg-danger">vulnerable</span>
+                  {% else %}
+                  <span class="badge bg-success">secure</span>
+                  {% endif %}
+              </td>
+              <td>
+                  <strong>Vulnerabilities:</strong>
+                  {% if profile.vulnerable == True %}
+                  {% for vuln in profile.vulnerabilities %}
+                  <br/>
+                  {{ vuln }}
+                  {% endfor %}
+                  {% else %}
+                  No vulnerabilities reported against this version.
+                  {% endif %}
               </td>
             </tr>
             {% endfor %}

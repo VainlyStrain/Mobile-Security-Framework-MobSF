@@ -35,7 +35,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-          
+
           <li class="nav-item">
             <a href="#information" class="nav-link">
               <i class="nav-icon fas fa-info-circle"></i>
@@ -76,7 +76,7 @@
               </p>
             </a>
           </li>
-          
+
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-shield-alt"></i>
@@ -269,7 +269,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12">
-        
+
           <div class="card">
             <div class="card-body">
               <h5 class="card-title"></h5>
@@ -285,7 +285,7 @@
                   <span class="badge bg-{% if security_score < 50 %}danger{% elif security_score == 100 %}success{% else %}warning{% endif %}">Security Score</span> <b>{{ security_score }}/100 </b><br/>
                 </div>
                 <div class="col-6">
-                  <p><strong><i class="fas fa-box-open"></i> FILE INFORMATION </strong></p>                         
+                  <p><strong><i class="fas fa-box-open"></i> FILE INFORMATION </strong></p>
                   <span class="badge bg-primary">File Name</span>
                   {{ file_name }}<br/>
                   <span class="badge bg-primary">Size</span>
@@ -293,20 +293,20 @@
                   <span class="badge bg-primary">MD5</span>
                   {{ md5 }}<br/>
                   <span class="badge bg-primary">SHA1</span>
-                  {{ sha1 }}<br/>           
+                  {{ sha1 }}<br/>
                   <span class="badge bg-primary">SHA256</span>
                   {{ sha256 }}<br/>
                 </div>
                 <div class="col-4">
-                  <p><strong><i class="fas fa-info"></i> APP INFORMATION </strong></p>                                       
+                  <p><strong><i class="fas fa-info"></i> APP INFORMATION </strong></p>
                   <span class="badge bg-primary">App Name</span>
-                  {{ app_name }}<br/>                                   
+                  {{ app_name }}<br/>
                   <span class="badge bg-primary">Package Name</span>
                   {{ package_name }}<br/>
                   <span class="badge bg-primary">Main Activity</span>
                   {{ main_activity }}<br/>
                   <span class="badge bg-primary">Target SDK</span>
-                  {{ target_sdk }}           
+                  {{ target_sdk }}
                   <span class="badge bg-primary">Min SDK</span>
                     {{ min_sdk }}
                   <span class="badge bg-primary">Max SDK</span>
@@ -315,7 +315,7 @@
                   {{ version_name }}
                 <span class="badge bg-primary">Android Version Code</span>
                 {{ version_code }}
-                </div>    
+                </div>
               </div>
 
             </div>
@@ -330,7 +330,7 @@
                 <strong><i class="fab fa-google-play"></i> PLAYSTORE INFORMATION</strong>
                 </p>
                     <span class="badge bg-info">Title</span>
-                      {{ playstore_details.title }} <br/>                                     
+                      {{ playstore_details.title }} <br/>
                     <span class="badge bg-info">Score</span>
                       {{ playstore_details.score}}
                     <span class="badge bg-info">Installs</span>
@@ -345,17 +345,17 @@
                         <a target="_blank" href="{{ playstore_details.url }}" rel="noopener noreferrer"> {{ package_name }} </a>
                     <br/>
                     <span class="badge bg-info">Developer Details</span>
-                        {{playstore_details.developer}},  
-                        {{playstore_details.developerId}}, 
+                        {{playstore_details.developer}},
+                        {{playstore_details.developerId}},
                         {{playstore_details.developerAddress}},
-                        {{playstore_details.developerWebsite}}, 
-                        {{playstore_details.developerEmail}}, 
+                        {{playstore_details.developerWebsite}},
+                        {{playstore_details.developerEmail}},
                   <br/>
                   <span class="badge bg-info">Release Date</span>
                       {{ playstore_details.released }}
                   <span class="badge bg-info">Privacy Policy</span>
                   <a target="_blank" href="{{ playstore_details.privacyPolicy }}" rel="noopener noreferrer">Privacy link</a>
-                  <br/>                                     
+                  <br/>
                       <span class="badge bg-info">Description</span>
                       <pre id="pre-wrap">{{ playstore_details.description }}</pre>
             </div>
@@ -371,7 +371,7 @@
    <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12">
-        
+
           <div class="card">
             <div class="card-body">
               <h5 class="card-title"></h5>
@@ -500,7 +500,7 @@
 
         </div>
       </div>
-    </div>  
+    </div>
   </section>
   <!-- =========================end information==================================== -->
 
@@ -571,9 +571,9 @@
                           {% endfor %}
                       </tbody>
                   </table>
-                                
+
            </div>
-              
+
           </div>
         </div><!-- /.card -->
         </div>
@@ -612,8 +612,8 @@
                     <br/>
                     {% endfor %}
                     </td>
-                  </tr>    
-                    {% endfor %} 
+                  </tr>
+                    {% endfor %}
                   </tbody>
                   </table>
                   </div>
@@ -640,7 +640,7 @@
                     <thead>
                           <tr>
                               <th>ACTIVITY</th>
-                              <th>INTENT</th>   
+                              <th>INTENT</th>
                           </tr>
                       </thead>
                       <tbody>
@@ -649,7 +649,7 @@
                             <td>{{activity}}</td>
                             <td>
                                    {% if intent_details|key:"schemes" %}
-                                      <strong>Schemes</strong>: 
+                                      <strong>Schemes</strong>:
                                       {% for scheme in intent_details|key:"schemes" %}
                                         {{scheme}},
                                       {% endfor %}
@@ -658,37 +658,37 @@
                                    {% if intent_details|key:"hosts" %}
                                       <strong>Hosts:</strong> {% for host in intent_details|key:"hosts" %}
                                         {{host}},
-                                      {% endfor %} 
+                                      {% endfor %}
                                       <br/>
                                    {% endif %}
                                    {% if intent_details|key:"ports" %}
                                       <strong>Ports:</strong> {% for port in intent_details|key:"ports" %}
                                         {{port}},
-                                      {% endfor %} 
+                                      {% endfor %}
                                       <br/>
                                    {% endif %}
                                    {% if intent_details|key:"mime_types" %}
                                       <strong>Mime Types:</strong> {% for mime in intent_details|key:"mime_types" %}
                                         {{mime}},
-                                      {% endfor %} 
+                                      {% endfor %}
                                       <br/>
                                    {% endif %}
                                    {% if intent_details|key:"paths" %}
                                       <strong>Paths:</strong> {% for path in intent_details|key:"paths" %}
                                         {{path}},
-                                      {% endfor %} 
+                                      {% endfor %}
                                       <br/>
                                    {% endif %}
                                    {% if intent_details|key:"path_prefixs" %}
                                       <strong>Path Prefixes:</strong> {% for prefix in intent_details|key:"path_prefixs" %}
                                         {{prefix}},
-                                      {% endfor %} 
+                                      {% endfor %}
                                       <br/>
                                    {% endif %}
                                    {% if intent_details|key:"path_patterns" %}
                                       <strong>Path Patterns:</strong> {% for pattern in intent_details|key:"path_patterns" %}
                                         {{pattern}},
-                                      {% endfor %} 
+                                      {% endfor %}
                                       <br/>
                                    {% endif %}
                               {% endfor %}
@@ -726,7 +726,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                                      
+
                     {% for item in network_security %}
                       <tr>
                         <td>{{ forloop.counter }}</td>
@@ -749,7 +749,7 @@
                         <td>
                         {{item.description }}
                         </td>
-   
+
                        </tr>
                      {% endfor %}
                     </tbody>
@@ -784,7 +784,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                                      
+
                     {% for item in manifest_analysis %}
                       <tr>
                         <td>{{ forloop.counter }}</td>
@@ -800,12 +800,12 @@
                           {% elif item|key:"stat" == "medium" %}
                             <span class="badge bg-warning">medium</span>
                           {% endif %}
-                         
+
                         </td>
                         <td>
                         {{item|key:"desc"}}
                         </td>
-   
+
                        </tr>
                      {% endfor %}
                     </tbody>
@@ -894,6 +894,8 @@
                      <th>SIMILARITY</th>
                      <th>SHRINK PERCENTAGE</th>
                      <th>MATCHED ROOT PACKAGE</th>
+                     <th>STATUS</th>
+                     <th>PROBLEMS</th>
                    </tr>
                  </thead>
                  <tbody>
@@ -924,6 +926,24 @@
                      {% else %}
                      No root package exists.
                      {% endif %}
+                   </td>
+                   <td>
+                     {% if profile.vulnerable == True %}
+                       <span class="badge bg-danger">vulnerable</span>
+                       {% else %}
+                       <span class="badge bg-success">secure</span>
+                       {% endif %}
+                   </td>
+                   <td>
+                       <strong>Vulnerabilities:</strong>
+                       {% if profile.vulnerable == True %}
+                       {% for vuln in profile.vulnerabilities %}
+                       <br/>
+                       {{ vuln }}
+                       {% endfor %}
+                       {% else %}
+                       No vulnerabilities reported against this version.
+                       {% endif %}
                    </td>
                  </tr>
                  {% endfor %}
@@ -999,8 +1019,8 @@
                   <br/>
                   {% endfor %}
                   </td>
-                </tr>    
-              {% endfor %} 
+                </tr>
+              {% endfor %}
               </tbody>
             </table>
             </div>
@@ -1049,8 +1069,8 @@
                      <td>
                       {{ details.choice }}
                      </td>
-                  </tr>    
-                {% endfor %} 
+                  </tr>
+                {% endfor %}
               </tbody>
             </table>
             </div>
@@ -1090,10 +1110,10 @@
                      <td>
                      {% for cert_f in item|key:"files" %}
                       {{ cert_f }}<br />
-                     {% endfor %} 
+                     {% endfor %}
                     </td>
-                  </tr>    
-                {% endfor %} 
+                  </tr>
+                {% endfor %}
               </tbody>
             </table>
             </div>
@@ -1116,7 +1136,7 @@
              <strong><i class="fab fa-searchengin"></i> DOMAIN MALWARE CHECK</strong>
              </p>
               <div class="table-responsive">
-              {% if domains %} 
+              {% if domains %}
              <table id="table_malware" class="table table-bordered table-hover table-striped">
                   <thead>
                   <tr>
@@ -1127,7 +1147,7 @@
                  </thead>
                  <tbody>
                  {% for domain, details in domains.items %}
-                  <tr><td>{{domain}}</td><td> 
+                  <tr><td>{{domain}}</td><td>
 
                     {% if details|key:"bad" == "yes" %}
                     <span class="badge bg-danger">malware</span><br/>
@@ -1178,7 +1198,7 @@
              <strong><i class="fas fa-globe"></i> URLS</strong>
              </p>
               <div class="table-responsive">
-              {% if urls %} 
+              {% if urls %}
              <table id="table_urls" class="table table-bordered table-hover table-striped">
                   <thead>
                   <tr>
@@ -1199,7 +1219,7 @@
                           <a href="{% url "view_source" %}?file={{urldict|key:"path"}}&amp;md5={{ md5}}&amp;type={{app_type}}">{{urldict|key:"path"}}</a>
                        </td>
                     </tr>
-                  {% endfor %} 
+                  {% endfor %}
                 </tbody>
             </table>
             {% endif %}
@@ -1223,7 +1243,7 @@
              <strong><i class="fas fa-database"></i> FIREBASE DATABASE</strong>
              </p>
               <div class="table-responsive">
-               {% if firebase_urls %} 
+               {% if firebase_urls %}
              <table id="table_firebase" class="table table-bordered table-hover table-striped">
                   <thead>
                   <tr>
@@ -1231,7 +1251,7 @@
                      <th>DETAILS</th>
                   </tr>
                  </thead>
-               
+
                  <tbody>
                   {% for item in firebase_urls %}
                     <tr>
@@ -1246,7 +1266,7 @@
                          {% endif %}
                        </td>
                     </tr>
-                  {% endfor %} 
+                  {% endfor %}
                </tbody>
             </table>
              {% endif %}
@@ -1270,7 +1290,7 @@
              <strong><i class="fas fa-envelope"></i> EMAILS</strong>
              </p>
               <div class="table-responsive">
-                {% if emails %} 
+                {% if emails %}
              <table id="table_emails" class="table table-bordered table-hover table-striped">
                   <thead>
                   <tr>
@@ -1290,7 +1310,7 @@
                           <a href="{% url "view_source" %}?file={{email_dict|key:"path"}}&amp;md5={{ md5}}&amp;type={{app_type}}">{{email_dict|key:"path"}}</a>
                        </td>
                     </tr>
-                  {% endfor %} 
+                  {% endfor %}
                   </tbody>
             </table>
               {% endif %}
@@ -1314,10 +1334,10 @@
              <strong><i class="fas fa-font"></i> STRINGS</strong>
              </p>
                <div class="list-group">
-                  <p>  
+                  <p>
                     {% for val in strings %}
                      {{ val }}<br/>
-                    {% endfor %}                  
+                    {% endfor %}
                   </p>
               </div>
             </div>
@@ -1339,10 +1359,10 @@
              <strong><i class="fa fa-language"></i> ACTIVITIES</strong>
              </p>
                <div class="list-group">
-                  <p>  
+                  <p>
                     {% for act in activities %}
                       {{ act}} <br/>
-                    {% endfor %}               
+                    {% endfor %}
                   </p>
               </div>
             </div>
@@ -1364,10 +1384,10 @@
              <strong><i class="fa fa-cogs"></i> SERVICES</strong>
              </p>
                <div class="list-group">
-                  <p>  
+                  <p>
                      {% for srv in services %}
                         {{ srv}} <br/>
-                    {% endfor %}                  
+                    {% endfor %}
                   </p>
               </div>
             </div>
@@ -1389,10 +1409,10 @@
              <strong><i class="fa fa-assistive-listening-systems"></i> RECEIVERS</strong>
              </p>
                <div class="list-group">
-                  <p>  
+                  <p>
                       {% for rcv in receivers %}
                     {{ rcv}} <br/>
-                  {% endfor %}               
+                  {% endfor %}
                   </p>
               </div>
             </div>
@@ -1401,7 +1421,7 @@
         </div>
         <!-- end row -->
         </div>
-    
+
 </section>
  <!-- ===========================end receivers ================================== -->
 <a id="providers" class="anchor"></a>
@@ -1415,10 +1435,10 @@
              <strong><i class="fa fa-database"></i> PROVIDERS</strong>
              </p>
                <div class="list-group">
-                  <p>  
+                  <p>
                   {% for prv in providers %}
                     {{ prv }} <br/>
-                  {% endfor %}                            
+                  {% endfor %}
                   </p>
               </div>
             </div>
@@ -1440,10 +1460,10 @@
             <strong><i class="fab fa-buffer"></i> LIBRARIES</strong>
             </p>
               <div class="list-group">
-                <p>  
+                <p>
                 {% for lib in libraries %}
                   {{ lib }} <br/>
-                {% endfor %}                                       
+                {% endfor %}
                 </p>
             </div>
           </div>
@@ -1465,10 +1485,10 @@
             <strong><i class="far fa-copy"></i> FILES</strong>
             </p>
               <div class="list-group">
-                <p>  
+                <p>
                 {% for file in files %}
                   {{ file}} <br/>
-                {% endfor %}                                      
+                {% endfor %}
                 </p>
             </div>
           </div>

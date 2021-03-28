@@ -188,6 +188,9 @@ def parse_id(results):
     libs = []
     for lib in results['libraries']:
         for version in lib['version']:
+            # vulnerability lookup
+            vulnerable, vuln = is_vulnerable(lib['name'], version)
+
             sample = {
                 'name': lib['name'],
                 'version': version,
@@ -195,6 +198,8 @@ def parse_id(results):
                 'shrink_percentage': int(lib['shrink_percentage']) * 100.0,
                 'root_package_exist': lib['root_package_exist'],
                 'matched_root_package': lib['matched_root_package'],
+                'vulnerable': vulnerable,
+                'vulnerabilities': vuln,
             }
             libs.append(sample)
     return libs
