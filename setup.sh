@@ -118,6 +118,10 @@ git submodule update --init
 echo '[INSTALL] Initializing LibID'
 cd StaticAnalyzer/tools/LibID/
 ./example/init.sh
+echo '[INSTALL] Installing requirements for python2'
+pip2 install --no-cache-dir -r requirements.txt
+python2 -m pip install -i https://pypi.gurobi.com gurobipy
+echo '[INSTALL] Profiling example library okhttp'
 ./LibID.py profile -d example
 cd ../../../
 echo '[INSTALL] Building LibScout'
