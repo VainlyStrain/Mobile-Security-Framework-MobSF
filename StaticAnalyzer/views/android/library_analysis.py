@@ -4,6 +4,7 @@
 import logging
 import subprocess
 import json
+import os
 
 from MobSF.settings import (
     LIBID_DIR,
@@ -66,14 +67,20 @@ def library_analysis(app_path):
             # create or get profile path
             # path to generated json files from commands
             app_name = app_path.split('/')[-1].split('.')[0] + '.json'
+
             command = ['python2', 'LibID.py', 'profile', '-f', app_path]
+
             logger.info('Starting LibID app profiling')
+
             process = subprocess.run(
                 command,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.STDOUT,
                 cwd=LIBID_DIR,
                 check=True,
                 encoding='utf-8',
             )
+
             # profile the app with lib
             logger.info('Starting LibID lib detection')
             command = [
@@ -83,11 +90,21 @@ def library_analysis(app_path):
             ]
             process = subprocess.run(
                 command,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.STDOUT,
                 cwd=LIBID_DIR,
                 check=True,
                 encoding='utf-8',
             )
             # load from outputs/
+            if not os.path.exists(LIBID_DIR + 'outputs/' + app_name):
+                error = ('GurobiError: Model too large '
+                         'for size-limited license; '
+                         'visit https://www.gurobi.com/free-trial '
+                         'for a full license.')
+
+                raise ValueError(error)
+
             fp = open(LIBID_DIR + 'outputs/' + app_name)
             data = json.load(fp)
             fp.close()
@@ -175,7 +192,7 @@ def parse_id(results):
                 'name': lib['name'],
                 'version': version,
                 'similarity': lib['similarity'],
-                'shrink_percentage': int(lib['shrink_percentage']) * 100,
+                'shrink_percentage': int(lib['shrink_percentage']) * 100.0,
                 'root_package_exist': lib['root_package_exist'],
                 'matched_root_package': lib['matched_root_package'],
             }
